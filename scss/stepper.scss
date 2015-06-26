@@ -1,0 +1,196 @@
+// *******************************************
+// *******************************************
+
+    // Stepper Component Styles
+
+// *******************************************
+// *******************************************
+
+@import '../node_modules/synfrastructure/scss/_synfrastructure';
+
+$primary-color    : $syn-color                !default;
+$primary--light   : tint($primary-color, 80%) !default;
+$tertiary-color   : #47CEC3                   !default;
+$status--disabled : #888888                   !default;
+$status--error    : #DA3B3B                   !default;
+
+.stepper {
+    box-sizing  : content-box;
+    width       : calc(100% + 20px);
+    margin-left : rem-calc(-10); // .l--content-wrapper padding
+}
+
+.stepper__item {
+    background-color : $white;
+    border-top       : 1px solid $primary-color;
+    border-bottom    : 1px solid $primary-color;
+    position         : relative;
+    display          : inline-block;
+    height           : rem-calc(56);
+    color            : $primary--light;
+    transition       : background-color 150ms $ease-in-out-quad,
+                       color 150ms $ease-in-out-quad;
+
+    &::before,
+    &::after {
+        content      : '';
+        position     : absolute;
+        width        : 0;
+        height       : 0;
+        border-style : solid;
+        z-index      : 1;
+        transition   : border-color 150ms $ease-in-out-quad;
+    }
+
+    &::before {
+        top          : -1px;
+        right        : rem-calc(-20);
+        border-width : rem-calc(28 0 28 20);
+        border-color : transparent transparent transparent $primary-color;
+    }
+
+    &::after {
+        top          : 0;
+        right        : rem-calc(-19);
+        border-width : rem-calc(27 0 27 19);
+        border-color : transparent transparent transparent $white;
+    }
+
+    &:hover {
+        background-color : shade($white, 3%);
+        color            : shade($primary--light, 5%);
+
+        &::after {
+            border-color : transparent transparent transparent shade($white, 3%);
+        }
+
+    }
+
+    &:first-of-type {
+        .stepper__link {
+            left  : calc(50% + 5px);
+            width : calc(100% + 10px);
+        }
+    }
+
+    &:last-of-type {
+
+        .stepper__link {
+            left  : calc(50% + 5px);
+            width : calc(100% - 10px);
+        }
+
+        &::before,
+        &::after {
+            border : 0;
+        }
+    }
+
+    &.stepper__item--3 {
+        width : 33.3333%;
+    }
+
+    &.stepper__item--4 {
+        width : 25%;
+    }
+
+    &.stepper__item--5 {
+        width : 20%;
+    }
+
+    &.stepper__item--6 {
+        width : 16.6666%;
+    }
+
+    &.stepper__item--7 {
+        width : 14.285%;
+    }
+
+    &.stepper__item--8 {
+        width : 12.5%;
+    }
+
+    &.stepper__item--9 {
+        width : 11.1111%;
+    }
+
+    &.stepper__item--disabled {
+        color            : shade($status--disabled, 5%);
+        background-color : tint($status--disabled, 80%);
+
+        .stepper__link {
+            cursor : default;
+        }
+
+        &::before {
+            border-color : transparent transparent transparent shade($status--disabled, 5%);
+        }
+
+        &::after {
+            border-color : transparent transparent transparent tint($status--disabled, 80%);
+        }
+    }
+
+    &.stepper__item--current {
+        color            : $tertiary-color;
+        background-color : $primary--light;
+
+        &::before {
+            border-color : transparent transparent transparent $primary-color;
+        }
+
+        &::after {
+            border-color : transparent transparent transparent $primary--light;
+        }
+
+    }
+
+    &.stepper__item--error {
+        color            : $status--error;
+        background-color : tint($status--error, 70%);
+
+        &::before,
+        &::after {
+            border-color : transparent transparent transparent tint($status--error, 70%);
+        }
+
+    }
+
+    .stepper__link {
+        position     : absolute;
+        top          : 50%;
+        left         : calc(50% + 10px);
+        width        : 100%;
+        transform    : translate(-50%, -50%);
+        display      : inline-block;
+        padding      : rem-calc(12 0);
+        text-align   : center;
+        z-index      : 2;
+        word-spacing : 99999px;
+        user-select  : none;
+    }
+
+}
+
+.small-stepper {
+    margin-right     : rem-calc(-10);
+    margin-left      : rem-calc(-10);
+    padding          : rem-calc(20 40 0);
+    border-top       : 1px solid $primary-color;
+    border-bottom    : 1px solid $primary-color;
+    background-color : $primary--light;
+
+    .validation {
+        margin-bottom : rem-calc(20);
+    }
+
+    .custom-select-input {
+        max-width : rem-calc(640);
+        margin    : auto;
+    }
+
+    .custom-select-input__drop {
+        box-shadow : 0 10px 20px rgba($black, .4);
+    }
+
+}
